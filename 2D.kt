@@ -76,6 +76,14 @@ class Mask(val xdim:Int, val ydim:Int, private val default:Boolean = false) {
     // prints out a representation to stdout
     fun print() = msk.forEach { it.forEach{ b -> if (b) print("#") else print(".") }; println() }
 
+    // prints out a representation to stdout with a position marked
+    fun print(loc: XY, inv: Boolean) = msk.forEachIndexed { y, ln ->
+        ln.forEachIndexed { x, b ->
+            if (loc == XY(x,y)) print("$red$bold*$reset") else if (b xor inv) print("#") else print(".")
+        }
+        println("")
+    }
+
     // returns a snapshot of the inner mask
     fun snap():List<List<Boolean>> {
         val nMsk = mutableListOf<List<Boolean>>()

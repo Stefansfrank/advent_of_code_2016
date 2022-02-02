@@ -44,10 +44,10 @@ class Day11 : Solver {
         // the counter keeping track of the amount of moves
         var moves = 0
 
-        // the hash of the whole state for the cache
+        // the hash of the whole state (used to identify whether a situation has already been seen and can be pruned)
         // first I convert each pair into an int with first digit = floor of generator, second = floor of chip
         // the subsequent sorting makes the hash independent of which particular pair is in a given state
-        // and thus prunes a lot of solutions that were identical but with a different pair of equipment
+        // and thus prunes a lot of solutions that were structurally identical but with different pairs of equipment
         fun hash() = (0 until numP).map{ dir[it] + dir[it + numP]*10 }
             .sorted().fold(lift.toString()){ ac, p -> "$ac|$p" }
 
