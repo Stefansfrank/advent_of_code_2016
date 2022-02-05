@@ -118,6 +118,9 @@ class MapInt(val xdim:Int, val ydim:Int, private val default:Int = 0) {
 
     // adds all values of the map together
     fun cnt() = mp.fold(0) { acc, ln -> acc + ln.fold(0) { acc2, n -> acc2 + n } }
+
+    // adds a simple XY getter
+    fun get(xy:XY):Int = mp[xy.y][xy.x]
 }
 
 // a 2D integer map of dimensions xdim, ydim
